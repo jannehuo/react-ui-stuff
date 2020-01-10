@@ -1,0 +1,26 @@
+.main-nav {
+  padding: var(--base-padding);
+  display: flex;
+  flex-flow: wrap;
+}
+
+.main-nav-item {
+  --radius: 20px;
+  background-color: var(--blue);
+  color: var(--white);
+  padding: var(--base-padding);
+  text-decoration: none;
+  margin: 5px;
+  flex: 0 0 calc(33.33% - 10px);
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  font-size: 4em;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px var(--radius) 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px var(--radius) 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px var(--radius) 0px rgba(0, 0, 0, 0.75);
+}
