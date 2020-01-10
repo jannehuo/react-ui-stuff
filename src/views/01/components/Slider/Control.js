@@ -21,6 +21,7 @@ export default class Outer extends Component {
     this.stop = this.stop.bind(this);
     this.radianToDegree = this.radianToDegree.bind(this);
     this.calculateSliderVal = this.calculateSliderVal.bind(this);
+    this.handleTouch = this.handleTouch.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +44,11 @@ export default class Outer extends Component {
 
   mouseUp(e) {
     this.stop();
+  }
+
+  handleTouch(e) {
+    const toucheEvent = e.nativeEvent.touches[0];
+    this.rotate(toucheEvent);
   }
 
   radianToDegree(val) {
@@ -80,7 +86,11 @@ export default class Outer extends Component {
   render() {
     const { angle, sliderVal } = this.state;
     return (
-      <div className="slider-outer-circle" onMouseDown={this.mouseDown}>
+      <div
+        className="slider-outer-circle"
+        onMouseDown={this.mouseDown}
+        onTouchMove={this.handleTouch}
+      >
         <div className="min">
           <span>cold</span>
         </div>
