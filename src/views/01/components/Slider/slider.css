@@ -119,3 +119,13 @@
   position: absolute;
   color: #d2146a;
 }
+
+.number-spinner-container {
+  display: flex;
+  overflow-y: hidden;
+  height: 120px;
+}
+
+.number-spinner-container > .spinner {
+  transition: transform 1s ease;
+}
