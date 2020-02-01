@@ -1,11 +1,12 @@
 :root {
-  --white: #fafafa;
-  --black: #5a5050;
+  --white: #d6d6d6;
+  --black: #333333;
   --green: #a2d4ab;
   --dark-green: #3eaca8;
   --blue: #547a82;
   --base-padding: 20px;
   --base-font-size: 18px;
+  --base-margin: 20px;
 }
 
 * {
@@ -14,13 +15,14 @@
 
 body {
   margin: 0;
-  background-color: var(--white);
   color: var(--black);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: var(--base-font-size);
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--white);
 }
 
 .dribbble-link {
@@ -46,4 +48,29 @@ p {
   margin: 0;
   font-size: 100%;
   line-height: 1;
+}
+
+a {
+  color: #ea4c89;
+}
+
+.flex-container {
+  display: flex;
+  padding: var(--base-padding);
+}
+
+.flex-container.column {
+  flex-direction: column;
+}
+
+.flex-container.full-height-centered {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-text {
+  font-size: 1.5em;
+  font-weight: 700;
+  max-width: 300px;
 }
