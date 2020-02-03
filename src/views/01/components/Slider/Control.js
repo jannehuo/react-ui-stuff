@@ -16,6 +16,8 @@ export default class Outer extends Component {
     this.state = {
       angle: 0, // radians
       sliderVal: 0,
+      numberHeight: 0,
+      initialTransform: 0,
       inner: {
         x: 0,
         y: 0
@@ -35,21 +37,55 @@ export default class Outer extends Component {
     this.splitValue = this.splitValue.bind(this);
     this.getValueForSlider = this.getValueForSlider.bind(this);
     this.roll = this.roll.bind(this);
+    this.getNumberHeight = this.getNumberHeight.bind(this);
+    this.getInitialTransform = this.getInitialTransform.bind(this);
+    this.initSpinners = this.initSpinners.bind(this);
   }
 
   componentDidMount() {
     const innerRect = this.inner.current.getBoundingClientRect();
+    this.setState(
+      {
+        ...this.state,
+        sliderVal: this.initialValue,
+        inner: {
+          ...this.state.inner,
+          x: innerRect.left + innerRect.width / 2,
+          y: innerRect.top + innerRect.height / 2
+        }
+      },
+      () => {
+        this.initSpinners();
+      }
+    );
+  }
+
+  getNumberHeight() {
+    const numberElement = document.querySelector(".spinner div");
+    return numberElement.offsetHeight;
+  }
+
+  getInitialTransform(numberH) {
+    const numberElements = document.querySelectorAll("#spinner-1 div");
+    let initialValueIndex;
+    numberElements.forEach((el, i) => {
+      if (el.dataset.initial === "true") {
+        initialValueIndex = i;
+      }
+    });
+    return -1 * (initialValueIndex * numberH);
+  }
+
+  initSpinners() {
+    const numberHeight = this.getNumberHeight();
+    const initialTransform = this.getInitialTransform(numberHeight);
     this.setState({
       ...this.state,
-      sliderVal: this.initialValue,
-      inner: {
-        ...this.state.inner,
-        x: innerRect.left + innerRect.width / 2,
-        y: innerRect.top + innerRect.height / 2
-      },
+      numberHeight,
+      initialTransform,
       transforms: {
-        num0: this.initialTransform,
-        num1: this.initialTransform
+        num0: initialTransform,
+        num1: initialTransform
       }
     });
   }
@@ -115,14 +151,12 @@ export default class Outer extends Component {
   }
 
   roll(control) {
-    const { sliderVal } = this.state;
+    const { sliderVal, numberHeight, initialTransform } = this.state;
     const singleDigitDifference = sliderVal - this.initialValue;
     const firstDigitDifference =
       this.splitValue(sliderVal)[0] - this.splitValue(this.initialValue)[0];
-    const newValue1 =
-      this.initialTransform - singleDigitDifference * this.numberHeight;
-    const newValue0 =
-      this.initialTransform - firstDigitDifference * this.numberHeight;
+    const newValue1 = initialTransform - singleDigitDifference * numberHeight;
+    const newValue0 = initialTransform - firstDigitDifference * numberHeight;
     this.setState({
       ...this.state,
       transforms: {
@@ -135,8 +169,10 @@ export default class Outer extends Component {
   render() {
     const {
       angle,
-      transforms: { num0, num1 }
+      transforms: { num0, num1 },
+      numberHeight
     } = this.state;
+    const initialNumbers = this.splitValue(this.initialValue);
     const Nums = ({ values }) => {
       return (
         <React.Fragment>
@@ -144,7 +180,9 @@ export default class Outer extends Component {
             <div key={val}>{val}</div>
           ))}
           {values.map((val, i) => (
-            <div key={val}>{val}</div>
+            <div data-initial={initialNumbers.includes(val)} key={val}>
+              {val}
+            </div>
           ))}
         </React.Fragment>
       );
@@ -164,16 +202,21 @@ export default class Outer extends Component {
         </div>
         <Inner rotate={angle} ref={this.inner} />
         <div className="slider-value">
-          <div className="number-spinner-container">
+          <div
+            className="number-spinner-container"
+            style={{ height: `${numberHeight}px` }}
+          >
             <span
               className="spinner"
               style={{ transform: `translateY(${num0}px)` }}
+              id="spinner-1"
             >
               <Nums values={values} />
             </span>
             <span
-              className="spinner"
+              className="spinner spinner-2"
               style={{ transform: `translateY(${num1}px)` }}
+              id="spinner-2"
             >
               <Nums values={values} />
             </span>
