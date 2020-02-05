@@ -1,9 +1,9 @@
 import React from "react";
 
 function Container(props) {
-  const { link, color, name } = props;
+  const { link, color, name, style } = props;
   return (
-    <div className="view-1">
+    <div className="page-container" style={style}>
       <a
         href={link}
         target="_blank"

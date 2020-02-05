@@ -9,6 +9,7 @@ function View() {
       link="https://dribbble.com/shots/5836646-Quiz-iOS-app-Animation"
       name="Quiz App"
       color="white"
+      style={{ backgroundColor: "var(--blue)" }}
     >
       <Quiz />
     </Container>

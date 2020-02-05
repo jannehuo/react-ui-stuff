@@ -71,3 +71,7 @@ a {
   font-weight: 700;
   max-width: 300px;
 }
+
+.page-container {
+  height: 100vh;
+}

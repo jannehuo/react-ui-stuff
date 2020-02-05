@@ -5,22 +5,27 @@
 }
 
 .quiz-container {
-  background-color: var(--blue);
   color: var(--white);
-  height: 100vh;
   font-family: "Alatsi", sans-serif;
   padding: var(--base-padding);
+  background-color: var(--blue);
 }
 
 .app-container {
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   margin: 0 auto;
+  height: 100%;
+  background-color: var(--blue);
 }
 
 .skeleton {
   display: block;
   opacity: 0.2;
+}
+
+.quiz-user {
+  padding: var(--base-padding);
 }
 
 .quiz-user-inforow {
@@ -49,4 +54,43 @@
 
 .quiz-user-inforow .stat-value {
   font-size: 3em;
+}
+
+.views-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.view {
+  width: calc(50% - 40px);
+  margin: 20px;
+  background-color: var(--white);
+  color: var(--blue);
+  padding: var(--base-padding);
+  border-radius: 10px;
+  min-height: 150px;
+}
+
+.view .tag {
+  text-transform: uppercase;
+  font-size: 0.6em;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.view .tag:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--yellow);
+  width: 10%;
+  height: 3px;
+  display: block;
+}
+
+.view .name {
+  font-size: 1.5em;
+  font-weight: 700;
 }
