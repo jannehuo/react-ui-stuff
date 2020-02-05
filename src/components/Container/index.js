@@ -1,15 +1,16 @@
 import React from "react";
 
 function Container(props) {
+  const { link, color, name } = props;
   return (
     <div className="view-1">
       <a
-        href="https://dribbble.com/shots/3257243-IoT-navigation-for-smart-home-product-interaction"
+        href={link}
         target="_blank"
-        className="dribbble-link dribbble-link--white"
+        className={`dribbble-link dribbble-link--${color ? color : ""}`}
         rel="noopener noreferrer"
       >
-        Dribble - Iot
+        {name}
       </a>
       {props.children}
     </div>

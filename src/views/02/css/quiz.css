@@ -1,0 +1,52 @@
+:root {
+  --blue: #1f47bb;
+  --white: #f2f2f2;
+  --yellow: #fedd58;
+}
+
+.quiz-container {
+  background-color: var(--blue);
+  color: var(--white);
+  height: 100vh;
+  font-family: "Alatsi", sans-serif;
+  padding: var(--base-padding);
+}
+
+.app-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.skeleton {
+  display: block;
+  opacity: 0.2;
+}
+
+.quiz-user-inforow {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.quiz-user-inforow .user-name {
+  font-size: 4em;
+}
+
+.quiz-user-inforow .user-name .name-part {
+  margin-bottom: 10px;
+}
+
+.quiz-user-inforow .stat {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.quiz-user-inforow .stat-name {
+  color: var(--yellow);
+  margin-bottom: 5px;
+}
+
+.quiz-user-inforow .stat-value {
+  font-size: 3em;
+}

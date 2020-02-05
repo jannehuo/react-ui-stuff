@@ -37,6 +37,9 @@ export default class Home extends Component {
                 <Link className="main-nav-item" to="/01">
                   WIP: IoT navigation
                 </Link>
+                <Link className="main-nav-item" to="/02">
+                  WIP: Quiz App
+                </Link>
               </div>
               <div className="info-links">
                 <a
