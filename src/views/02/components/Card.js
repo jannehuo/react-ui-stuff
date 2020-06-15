@@ -1,10 +1,20 @@
 import React from "react";
 import { BASE_URL } from "../constants";
 
-const Card = props => {
-  const { image, title, rating, zIndex, current, next, prev } = props;
+const Card = (props) => {
+  const {
+    image,
+    title,
+    rating,
+    zIndex,
+    current,
+    next,
+    prev,
+    index,
+    onClick,
+  } = props;
   const style = {
-    zIndex
+    zIndex,
   };
   let className = "card-container";
   if (current) {
@@ -17,7 +27,15 @@ const Card = props => {
     className = "card-container prev";
   }
   return (
-    <div className={className} style={style}>
+    <div
+      className={className}
+      style={style}
+      data-index={index}
+      onClick={onClick}
+      data-current={current}
+      data-next={next}
+      data-prev={prev}
+    >
       <div className="card-content">
         <img
           className="card-content-image"
